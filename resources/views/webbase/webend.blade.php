@@ -50,7 +50,7 @@
 
 	<!-- <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script> -->
 
-	<script type="text/javascript" src="{{ URL::asset('js/common.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/common.js?ver=1.1') }}"></script>
 	
 	<script type="text/javascript" src="{{ URL::asset('js/report.js?ver=1.1') }}"></script>
 	

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use App\logic\Verifycode;
 use App\logic\Web_cht;
-use App\logic\Store_logic;
 
 class Login extends Basetool
 {
@@ -106,16 +105,6 @@ class Login extends Basetool
                $Session_data = Login::login_session_format( $user_id, $data );
 
                Session::put( 'Login_user', $Session_data );
-
-               $store_info = Store_logic::get_store_info();
-
-               $store_info = $store_info[0];
-
-               Session::put( 'Store', $store_info->id );
-
-               // 發送折價券
-
-               Ecoupon_logic::send_ecoupon( $send_type = 1, (int)$user_id );
 
             }
             catch(\Exception $e)

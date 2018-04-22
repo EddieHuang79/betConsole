@@ -48,6 +48,7 @@ var Show_current_position = function(){
 			data: "",
 			type: 'POST',
 			success: function( response ) {
+				console.log(response);
 				$(".verify_code").attr("src", response);
 			}
 		});
