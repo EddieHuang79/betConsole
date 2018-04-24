@@ -18,24 +18,8 @@ class Redis_tool
 
 	protected $msg_key = "msg_";
 
-	protected $week_order_cnt_key = "week_order_cnt_";
+	protected $report_data_key = "report_data_key";
 
-	protected $week_cancel_order_cnt_key = "week_cancel_order_cnt_";
-
-	protected $today_in_ws_cnt_key = "today_in_ws_cnt_";
-
-	protected $today_out_ws_cnt_key = "today_out_ws_cnt_";
-
-	protected $month_order_view_key = "month_order_view_";
-
-	protected $year_stock_view_key = "year_stock_view_";
-
-	protected $year_product_top5_key = "year_product_top5_";
-
-	protected $stock_analytics_key = "stock_analytics_";
-
-	protected $product_top5_stack_key = "product_top5_stack_";
-    
     
 	// 設定搜尋工具
 
@@ -351,44 +335,40 @@ class Redis_tool
 
 	// 儲存周訂單數
 
-	public static function set_week_order_cnt( $key, $cnt )
+	public static function set_report_data( $key, $data, $deadline )
 	{
 
-		$_this = new self();
+		$_this = new self;
 
-		$result = false;
-
-		if ( !empty($key) && is_int($cnt) ) 
+		if ( !empty($key) && !empty($data) && !empty($data) && !empty($data) && !empty($deadline) && !empty($deadline) ) 
 		{
 
-			$_this->del_key_by_keyword( $_this->week_order_cnt_key );
+			$_this->del_key_by_keyword( $_this->report_data_key . $key );
 
-			$week_order_cnt_key = $_this->week_order_cnt_key.$key;
+			$report_data_key = $_this->report_data_key . $key . "_" . $deadline ;
 
-			Redis::set( $week_order_cnt_key, $cnt ) ;
+			Redis::set( $report_data_key, $data ) ;
 
 		}
-
-		return $result;
 
 	}
 
 
 	// 取得周訂單數
 
-	public static function get_week_order_cnt( $key )
+	public static function get_report_data( $key, $deadline )
 	{
 
-		$_this = new self();
+		$_this = new self;
 
-		$result = false;
+		$result = "";
 
-		if ( !empty($key) ) 
+		if ( !empty($key) && time() <= $deadline ) 
 		{
 
-			$week_order_cnt_key = $_this->week_order_cnt_key.$key;
+			$report_data_key = $_this->report_data_key . $key . "_" . $deadline;
 
-			$data = Redis::get( $week_order_cnt_key );
+			$data = Redis::get( $report_data_key );
 
 			$result = !empty($data) ? $data : "" ;
 
@@ -397,427 +377,6 @@ class Redis_tool
 		return $result;
 
 	}
-
-
-	// 儲存週取消訂單數
-
-	public static function set_week_cancel_order_cnt( $key, $cnt )
-	{
-
-		$_this = new self();
-
-		$result = false;
-
-		if ( !empty($key) && is_int($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->week_cancel_order_cnt_key );
-
-			$week_cancel_order_cnt_key = $_this->week_cancel_order_cnt_key.$key;
-
-			Redis::set( $week_cancel_order_cnt_key, $cnt ) ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得週取消訂單數
-
-	public static function get_week_cancel_order_cnt( $key )
-	{
-
-		$_this = new self();
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$week_cancel_order_cnt_key = $_this->week_cancel_order_cnt_key.$key;
-
-			$data = Redis::get( $week_cancel_order_cnt_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 儲存本日入庫數
-
-	public static function set_today_in_ws_cnt( $key, $cnt )
-	{
-
-		$_this = new self();
-
-		$result = false;
-
-		if ( !empty($key) && is_int($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->today_in_ws_cnt_key );
-
-			$today_in_ws_cnt_key = $_this->today_in_ws_cnt_key.$key;
-
-			Redis::set( $today_in_ws_cnt_key, $cnt ) ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得本日入庫數
-
-	public static function get_today_in_ws_cnt( $key )
-	{
-
-		$_this = new self();
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$today_in_ws_cnt_key = $_this->today_in_ws_cnt_key.$key;
-
-			$data = Redis::get( $today_in_ws_cnt_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 設定本日出庫數
-
-	public static function set_today_out_ws_cnt( $key, $cnt )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) && is_int($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->today_out_ws_cnt_key );
-
-			$today_out_ws_cnt_key = $_this->today_out_ws_cnt_key.$key;
-
-			Redis::set( $today_out_ws_cnt_key, $cnt ) ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得本日出庫數
-
-	public static function get_today_out_ws_cnt( $key )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$today_out_ws_cnt_key = $_this->today_out_ws_cnt_key.$key;
-
-			$data = Redis::get( $today_out_ws_cnt_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-
-	}
-
-
-	// 設定月訂單資料
-
-	public static function set_month_order_view( $key, $cnt )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) && is_array($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->month_order_view_key );
-
-			$month_order_view_key = $_this->month_order_view_key.$key;
-
-			$cnt = json_encode($cnt);
-
-			Redis::set( $month_order_view_key, $cnt ) ;
-
-			$result = $cnt;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得月訂單資料
-
-	public static function get_month_order_view( $key )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$month_order_view_key = $_this->month_order_view_key.$key;
-
-			$data = Redis::get( $month_order_view_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 設定年庫存
-
-	public static function set_year_stock_view( $key, $cnt )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) && is_array($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->year_stock_view_key );
-
-			$year_stock_view_key = $_this->year_stock_view_key.$key;
-
-			$cnt = json_encode($cnt);
-
-			Redis::set( $year_stock_view_key, $cnt ) ;
-
-			$result = $cnt;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得年庫存
-
-	public static function get_year_stock_view( $key )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$year_stock_view_key = $_this->year_stock_view_key.$key;
-
-			$data = Redis::get( $year_stock_view_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 設定庫存分析
-
-	public static function set_stock_analytics( $key, $cnt )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) && is_array($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->stock_analytics_key );
-
-			$stock_analytics_key = $_this->stock_analytics_key.$key;
-
-			$cnt = json_encode($cnt);
-
-			Redis::set( $stock_analytics_key, $cnt ) ;
-
-			$result = $cnt;
-
-		}
-
-		return $result;
-	}
-
-
-	// 取得庫存分析
-
-	public static function get_stock_analytics( $key )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$stock_analytics_key = $_this->stock_analytics_key.$key;
-
-			$data = Redis::get( $stock_analytics_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 設定年度top5
-
-	public static function set_year_product_top5( $key, $cnt )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) && is_array($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->year_product_top5_key );
-
-			$year_product_top5_key = $_this->year_product_top5_key.$key;
-
-			$cnt = json_encode($cnt);
-
-			Redis::set( $year_product_top5_key, $cnt ) ;
-
-			$result = $cnt;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得年度top5
-
-	public static function get_year_product_top5( $key )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$year_product_top5_key = $_this->year_product_top5_key.$key;
-
-			$data = Redis::get( $year_product_top5_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 設定年度top5 - 堆疊圖
-
-	public static function set_product_top5_stack( $key, $cnt )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) && is_array($cnt) ) 
-		{
-
-			$_this->del_key_by_keyword( $_this->product_top5_stack_key );
-
-			$product_top5_stack_key = $_this->product_top5_stack_key.$key;
-
-			$cnt = json_encode($cnt);
-
-			Redis::set( $product_top5_stack_key, $cnt ) ;
-
-			$result = $cnt;
-
-		}
-
-		return $result;
-
-	}
-
-
-	// 取得年度top5 - 堆疊圖
-
-	public static function get_product_top5_stack( $key )
-	{
-
-		$_this = new self;
-
-		$result = false;
-
-		if ( !empty($key) ) 
-		{
-
-			$product_top5_stack_key = $_this->product_top5_stack_key.$key;
-
-			$data = Redis::get( $product_top5_stack_key );
-
-			$result = !empty($data) ? $data : "" ;
-
-		}
-
-		return $result;
-
-	}
-
 
 	// 以關鍵字刪除資料
 

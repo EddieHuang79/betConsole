@@ -30,3 +30,29 @@ if ( $(".basicList").length > 0 )
 	});
 
 }
+
+if ( $(".report").length > 0 ) 
+{
+
+	var report = new Vue({
+		el: '.report',
+		components: {
+			reportOne: reportOne,
+			reportTwo: reportTwo,
+			reportThree: reportThree,
+			reportFour: reportFour,
+			reportFive: reportFive
+		},
+		created: function(){
+
+			setTimeout(function(){
+
+				$(".report").fadeIn(500);
+				$(".loadingImg").fadeOut(100);
+
+			},2500);
+
+		}
+	});
+
+}

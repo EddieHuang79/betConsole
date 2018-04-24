@@ -457,9 +457,9 @@ var	month_order_view = function(){
 
 	};
 
-month_order_view();
-year_stock_view();
-stock_analytics();
-month_top_five();
-loading();
+// month_order_view();
+// year_stock_view();
+// stock_analytics();
+// month_top_five();
+// loading();
 // product_top5_stack();

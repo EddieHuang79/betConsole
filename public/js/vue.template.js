@@ -497,4 +497,410 @@ var basicForm = {
 
 		}
 
+	},
+	reportOne = {
+
+		template: '<div></div>',
+		props: ["data"],
+		created: function(){
+
+				setTimeout(function(){
+
+					var data = report.$refs.report1.data;
+
+					Highcharts.chart('report1', {
+					    chart: {
+					        type: 'column'
+					    },
+					    title: {
+					        text: data.title
+					    },
+					    xAxis: {
+					        categories: data.categories
+					    },
+					    yAxis: {
+					        min: 0,
+					        title: {
+					            text: data.yAxisTitle
+					        },
+					        stackLabels: {
+					            enabled: true,
+					            style: {
+					                fontWeight: 'bold',
+					                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+					            }
+					        }
+					    },
+					    legend: {
+					        align: 'right',
+					        x: -30,
+					        verticalAlign: 'top',
+					        y: 25,
+					        floating: true,
+					        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+					        borderColor: '#CCC',
+					        borderWidth: 1,
+					        shadow: false
+					    },
+					    tooltip: {
+					        headerFormat: '<b>{point.x}</b><br/>',
+					        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+					    },
+					    plotOptions: {
+					        column: {
+					            stacking: 'normal',
+					            dataLabels: {
+					                enabled: true,
+					                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+					            }
+					        }
+					    },
+					    series: data.series
+					});
+
+				}, 1000);
+
+		}
+
+	},
+	reportTwo = {
+
+		template: '<div></div>',
+		props: ["data"],
+		created: function(){
+
+				setTimeout(function(){
+
+					var data = report.$refs.report2.data;
+
+					Highcharts.setOptions({
+					    lang: {
+					      decimalPoint: '.',
+					      thousandsSep: ','
+					    }
+					});
+
+					Highcharts.chart('report2', {
+					    chart: {
+					        type: 'column'
+					    },
+					    title: {
+					        text: data.title
+					    },
+					    xAxis: {
+					        categories: data.categories
+					    },
+					    yAxis: {
+					        min: 0,
+					        title: {
+					            text: data.yAxisTitle
+					        },
+					        stackLabels: {
+					            enabled: true,
+					            style: {
+					                fontWeight: 'bold',
+					                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+					            }
+					        }
+					    },
+					    legend: {
+					        align: 'right',
+					        x: -30,
+					        verticalAlign: 'top',
+					        y: 25,
+					        floating: true,
+					        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+					        borderColor: '#CCC',
+					        borderWidth: 1,
+					        shadow: false
+					    },
+					    tooltip: {
+					        headerFormat: '<b>{point.x}</b><br/>',
+					        pointFormat: '{series.name}: {point.y:,.0f}<br/>Total: {point.stackTotal:,.0f}'
+					    },
+					    plotOptions: {
+					        column: {
+					            stacking: 'normal',
+					            dataLabels: {
+					                enabled: true,
+					                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+					            }
+					        }
+					    },
+					    series: data.series
+					});
+
+				}, 1000);
+
+		}
+
+	},
+	reportThree = {
+
+		template: '<div></div>',
+		props: ["data"],
+		created: function(){
+
+				setTimeout(function(){
+
+					var data = report.$refs.report3.data;
+
+					Highcharts.setOptions({
+					    lang: {
+					      decimalPoint: '.',
+					      thousandsSep: ','
+					    }
+					});
+
+					Highcharts.chart('report3', {
+					    chart: {
+					        type: 'column'
+					    },
+					    title: {
+					        text: data.title
+					    },
+					    xAxis: {
+					        categories: data.categories
+					    },
+					    yAxis: {
+					        min: 0,
+					        title: {
+					            text: data.yAxisTitle
+					        },
+					        stackLabels: {
+					            enabled: true,
+					            style: {
+					                fontWeight: 'bold',
+					                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+					            }
+					        }
+					    },
+					    legend: {
+					        align: 'right',
+					        x: -30,
+					        verticalAlign: 'top',
+					        y: 25,
+					        floating: true,
+					        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+					        borderColor: '#CCC',
+					        borderWidth: 1,
+					        shadow: false
+					    },
+					    tooltip: {
+					        headerFormat: '<b>{point.x}</b><br/>',
+					        pointFormat: '{series.name}: {point.y:,.0f}<br/>Total: {point.stackTotal:,.0f}'
+					    },
+					    plotOptions: {
+					        column: {
+					            stacking: 'normal',
+					            dataLabels: {
+					                enabled: true,
+					                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+					            }
+					        }
+					    },
+					    series: data.series
+					});
+
+				}, 1000);
+
+		}
+
+	},
+	reportFour = {
+
+		template: '<div></div>',
+		props: ["data"],
+		created: function(){
+
+				setTimeout(function(){
+
+					var data = report.$refs.report4.data;
+
+					Highcharts.setOptions({
+					    lang: {
+					      decimalPoint: '.',
+					      thousandsSep: ','
+					    }
+					});
+
+					Highcharts.chart('report4', {
+					    chart: {
+					        type: 'column'
+					    },
+					    title: {
+					        text: data.title
+					    },
+					    xAxis: {
+					        categories: data.categories
+					    },
+					    yAxis: {
+					        min: 0,
+					        title: {
+					            text: data.yAxisTitle
+					        },
+					        stackLabels: {
+					            enabled: true,
+					            style: {
+					                fontWeight: 'bold',
+					                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+					            }
+					        }
+					    },
+					    legend: {
+					        align: 'right',
+					        x: -30,
+					        verticalAlign: 'top',
+					        y: 25,
+					        floating: true,
+					        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+					        borderColor: '#CCC',
+					        borderWidth: 1,
+					        shadow: false
+					    },
+					    tooltip: {
+					        headerFormat: '<b>{point.x}</b><br/>',
+					        pointFormat: '{series.name}: {point.y:,.0f}<br/>Total: {point.stackTotal:,.0f}'
+					    },
+					    plotOptions: {
+					        column: {
+					            stacking: 'normal',
+					            dataLabels: {
+					                enabled: true,
+					                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+					            }
+					        }
+					    },
+					    series: data.series
+					});
+
+				}, 1000);
+
+		}
+
+	},
+	reportFive = {
+
+		template: '<div></div>',
+		props: ["data"],
+		created: function(){
+
+				setTimeout(function(){
+
+					var data = report.$refs.report5.data;
+
+					Highcharts.chart('report5', {
+						chart: {
+							type: 'area'
+						},
+						title: {
+							text: data.title
+						},
+						subtitle: {
+							text: data.subtitle
+						},
+						xAxis: {
+							categories: data.categories,
+							tickmarkPlacement: 'on',
+							title: {
+								enabled: false
+							}
+						},
+						yAxis: {
+							title: {
+								text: data.yAxisTitle
+							},
+							labels: {
+								formatter: function () {
+									return this.value;
+								}
+							}
+						},
+						tooltip: {
+							split: true,
+							valueSuffix: "人"
+						},
+						plotOptions: {
+							area: {
+								stacking: 'normal',
+								lineColor: '#666666',
+								lineWidth: 1,
+								marker: {
+									lineWidth: 1,
+									lineColor: '#666666'
+								}
+							}
+						},
+						series: data.series
+					});
+
+				}, 1000);
+
+		}
+
+	},
+	reportSix = {
+
+		template: '<div></div>',
+		props: ["data"],
+		created: function(){
+
+				// setTimeout(function(){
+
+				// 	var data = report.$refs.report1.data;
+
+				// 	Highcharts.chart('report1', {
+				// 	    chart: {
+				// 	        type: 'column'
+				// 	    },
+				// 	    title: {
+				// 	        text: data.title
+				// 	    },
+				// 	    xAxis: {
+				// 	        categories: data.categories
+				// 	    },
+				// 	    yAxis: {
+				// 	        min: 0,
+				// 	        title: {
+				// 	            text: data.yAxisTitle
+				// 	        },
+				// 	        stackLabels: {
+				// 	            enabled: true,
+				// 	            style: {
+				// 	                fontWeight: 'bold',
+				// 	                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+				// 	            }
+				// 	        }
+				// 	    },
+				// 	    legend: {
+				// 	        align: 'right',
+				// 	        x: -30,
+				// 	        verticalAlign: 'top',
+				// 	        y: 25,
+				// 	        floating: true,
+				// 	        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+				// 	        borderColor: '#CCC',
+				// 	        borderWidth: 1,
+				// 	        shadow: false
+				// 	    },
+				// 	    tooltip: {
+				// 	        headerFormat: '<b>{point.x}</b><br/>',
+				// 	        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+				// 	    },
+				// 	    plotOptions: {
+				// 	        column: {
+				// 	            stacking: 'normal',
+				// 	            dataLabels: {
+				// 	                enabled: true,
+				// 	                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+				// 	            }
+				// 	        }
+				// 	    },
+				// 	    series: data.series
+				// 	});
+
+				// }, 3000);
+
+		}
+
 	};
