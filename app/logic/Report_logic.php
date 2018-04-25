@@ -29,6 +29,20 @@ class Report_logic extends Basetool
 		                            3 => "轉入金額"
 		                        );
 
+	protected $chartColor = array(
+									"#77C89B",
+									"#FCE477",
+									"#719CF6",
+									"#F4A96D"
+							);
+
+	protected $chartColor2 = array(
+									"#3FB27E",
+									"#F7CB4A",
+									"#5182E4",
+									"#F88D48"
+							);
+
 	/*
 
 	series: [{
@@ -70,6 +84,8 @@ class Report_logic extends Basetool
 
 		$Redis_key = 1;
 
+		$chartColor = $_this->chartColor;
+
 		$cache_data = Redis_tool::get_report_data( $Redis_key, $search_deadline );
 
 		if ( is_null($cache_data) || empty($cache_data) ) 
@@ -83,6 +99,7 @@ class Report_logic extends Basetool
 				foreach ($source as $row) 
 				{
 
+					$result["series"][$row->PromotionType - 1]["color"] = $chartColor[$row->PromotionType - 1] ;
 					$result["series"][$row->PromotionType - 1]["name"] = isset( $PromotionType2[$row->PromotionType] ) ? $PromotionType2[$row->PromotionType] : "" ;
 					$result["series"][$row->PromotionType - 1]["data"][] = $row->cnt;
 
@@ -147,6 +164,8 @@ class Report_logic extends Basetool
 
 		$Redis_key = 2;
 
+		$chartColor = $_this->chartColor;
+
 		$cache_data = Redis_tool::get_report_data( $Redis_key, $search_deadline );
 
 		if ( is_null($cache_data) || empty($cache_data) ) 
@@ -158,6 +177,7 @@ class Report_logic extends Basetool
 			{
 
 				$result["series"][$index]["name"] = $ColumnName ;
+				$result["series"][$index]["color"] = $chartColor[$index] ;
 
 				foreach ($data as $row) 
 				{
@@ -244,6 +264,8 @@ class Report_logic extends Basetool
 
 		$Redis_key = 3;
 
+		$chartColor = $_this->chartColor;
+
 		$cache_data = Redis_tool::get_report_data( $Redis_key, $search_deadline );
 
 		if ( is_null($cache_data) || empty($cache_data) ) 
@@ -257,6 +279,7 @@ class Report_logic extends Basetool
 				foreach ($source as $row) 
 				{
 
+					$result["series"][$row->PromotionType - 1]["color"] = $chartColor[$row->PromotionType - 1] ;
 					$result["series"][$row->PromotionType - 1]["name"] = isset( $PromotionType2[$row->PromotionType] ) ? $PromotionType2[$row->PromotionType] : "" ;
 					$result["series"][$row->PromotionType - 1]["data"][] = (int)$row->SumDepositAmount;
 
@@ -321,6 +344,8 @@ class Report_logic extends Basetool
 
 		$Redis_key = 4;
 
+		$chartColor = $_this->chartColor;
+
 		$cache_data = Redis_tool::get_report_data( $Redis_key, $search_deadline );
 
 		if ( is_null($cache_data) || empty($cache_data) ) 
@@ -334,6 +359,7 @@ class Report_logic extends Basetool
 				foreach ($source as $row) 
 				{
 
+					$result["series"][$row->PromotionType - 1]["color"] = $chartColor[$row->PromotionType - 1] ;
 					$result["series"][$row->PromotionType - 1]["name"] = isset( $PromotionType2[$row->PromotionType] ) ? $PromotionType2[$row->PromotionType] : "" ;
 					$result["series"][$row->PromotionType - 1]["data"][] = (int)$row->SumWithdrawalAmount;
 
@@ -405,6 +431,8 @@ class Report_logic extends Basetool
 
 		$Redis_key = 5;
 
+		$chartColor = $_this->chartColor2;
+
 		$cache_data = Redis_tool::get_report_data( $Redis_key, $search_deadline );
 
 		if ( is_null($cache_data) || empty($cache_data) ) 
@@ -418,6 +446,7 @@ class Report_logic extends Basetool
 				foreach ($source as $PromotionType => $row) 
 				{
 
+					$result["series"][$PromotionType - 1]["color"] = $chartColor[$PromotionType - 1] ;
 					$result["series"][$PromotionType - 1]["name"] = isset( $PromotionType2[$PromotionType] ) ? $PromotionType2[$PromotionType] : "" ;
 					$result["series"][$PromotionType - 1]["data"][] = count($row);
 
